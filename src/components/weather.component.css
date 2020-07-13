@@ -1,0 +1,21 @@
+.bottom-container{
+    padding: 30px 0 20px;
+    width: 100%;
+}
+.copyright{
+    color:black;
+    font-size: 0.75rem;
+    padding: 20px 0;
+}
+a{
+   text-decoration: none !important;
+   color:black  !important;
+   margin-left: 30px;
+}
+
+a:hover{
+    color:red !important;
+}
+hr{
+    color:black !important;
+}
