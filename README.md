@@ -20,18 +20,21 @@ Before setting up the project make sure you have an IDE.
     https://github.com/<YOUR_GITHUB_USERNAME>/ReactWeatherApp.git
 ```
 
+3. Make a new branch based on the issue you're working
+
+
 3. Go into the directory containing the project.
 
 ```
     cd ReactWeatherApp
 ```
 
-4. Make sure you have Node.js Installed and run the below command. This command will install required packages (node_modules) from Package.json
+5. Make sure you have Node.js Installed and run the below command. This command will install required packages (node_modules) from Package.json
 
 ```
     npm install
 ```
-5. Start the Application by using below command.
+6. Start the Application by using below command.
 
 ```
     npm start
