@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import './App.css';
+import "./App.css";
 import Weather from "./components/weather.component";
-import 'weather-icons/css/weather-icons.css';
+import "weather-icons/css/weather-icons.css";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const api = {
-  url: "https://api.openweathermap.org/data/2.5/weather?units=metric&appid=c65082e510e9cbf36a5cae8041688105&q="
-}
+  url: "https://api.openweathermap.org/data/2.5/weather?units=metric&appid=c65082e510e9cbf36a5cae8041688105&q=",
+};
 const weatherIcon = {
   Thunderstorm: "wi-thunderstorm",
   Drizzle: "wi-sleet",
@@ -15,7 +15,7 @@ const weatherIcon = {
   Snow: "wi-snow",
   Atmosphere: "wi-fog",
   Clear: "wi-day-sunny",
-  Clouds: "wi-day-fog"
+  Clouds: "wi-day-fog",
 };
 function get_WeatherIcon(weathericon, rangeId) {
   switch (true) {
@@ -45,37 +45,49 @@ function date(obj) {
   return date.toDateString();
 }
 
-
 function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({
-    name: "City"
+    name: "City",
   });
   const search = () => {
     fetch(`${api.url}${query}`)
-      .then(res => res.json())
-      .then(result => {
-        setWeather(result)
+      .then((res) => res.json())
+      .then((result) => {
+        setWeather(result);
         setQuery("");
       });
-  }
+  };
   return (
     <div className="App">
       <div className="jumbotron">
         <h3 className="display-4">Weather App</h3>
-        <p className="lead">A simple Web app which shows you weather by City Name.This uses OpenWeatherAPI made by ReactJS</p>
+        <p className="lead">
+          A simple Web app which shows you weather by City Name.This uses
+          OpenWeatherAPI made by ReactJS
+        </p>
       </div>
-      <input
-        name="city"
-        type="text"
-        className="form-control"
-        placeholder="Search for a City.."
-        onChange={e => setQuery(e.target.value)}
-        value={query}
-      />
-      <button className="btn btn-danger mt-4" onClick={search}>Get Weather</button>
-      {(typeof weather.main != "undefined") ?
-        <Weather city={weather.name}
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          search();
+        }}
+      >
+        <input
+          name="city"
+          type="text"
+          className="form-control"
+          placeholder="Search for a City.."
+          onChange={(e) => setQuery(e.target.value)}
+          value={query}
+        />
+        <button className="btn btn-danger mt-4" onClick={search}>
+          Get Weather
+        </button>
+      </form>
+      {typeof weather.main != "undefined" ? (
+        <Weather
+          city={weather.name}
           country={weather.sys.country}
           temp={Math.round(weather.main.temp)}
           description={weather.weather[0].main}
@@ -87,10 +99,12 @@ function App() {
           sunrise={date(weather.sys.sunrise * 1000)}
           sunset={date(weather.sys.sunset * 1000)}
           date={date(weather.dt * 1000)}
-          icon={get_WeatherIcon(weatherIcon, weather.weather[0].id)} /> : ('')
-      }
+          icon={get_WeatherIcon(weatherIcon, weather.weather[0].id)}
+        />
+      ) : (
+        ""
+      )}
     </div>
-
   );
 }
 export default App;
