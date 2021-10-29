@@ -47,16 +47,24 @@ function date(obj) {
 
 function App() {
   const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(false);
   const [weather, setWeather] = useState({
     name: "City",
   });
   const search = () => {
-    fetch(`${api.url}${query}`)
-      .then((res) => res.json())
-      .then((result) => {
-        setWeather(result);
-        setQuery("");
-      });
+    try {
+      setLoading(true);
+      fetch(`${api.url}${query}`)
+        .then((res) => res.json())
+        .then((result) => {
+          setWeather(result);
+          setQuery("");
+        });
+    } catch (error) {
+      alert(error);
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <div className="App">
@@ -82,7 +90,7 @@ function App() {
           value={query}
         />
         <button className="btn btn-danger mt-4" onClick={search}>
-          Get Weather
+          {loading ? "Loading..." : "Get Weather"}
         </button>
       </form>
       {typeof weather.main != "undefined" ? (
