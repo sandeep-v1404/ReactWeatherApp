@@ -45,20 +45,26 @@ function date(obj) {
   return date.toDateString();
 }
 
-
 function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({
     name: "City"
   });
+  const [hasFetched, setHasFetched] = useState(false)
+
   const search = () => {
     fetch(`${api.url}${query}`)
       .then(res => res.json())
       .then(result => {
         setWeather(result)
         setQuery("");
+        setHasFetched(true)
       });
-  }
+  };
+
+  const hasWeatherData = hasFetched && !!weather.main;
+  const hasError = hasFetched && !weather.main;
+
   return (
     <div className="App">
       <div className="jumbotron">
@@ -70,11 +76,11 @@ function App() {
         type="text"
         className="form-control"
         placeholder="Search for a City.."
-        onChange={e => setQuery(e.target.value)}
+        onChange={(e) => setQuery(e.target.value)}
         value={query}
       />
       <button className="btn btn-danger mt-4" onClick={search}>Get Weather</button>
-      {(typeof weather.main != "undefined") ?
+      {(hasWeatherData &&
         <Weather city={weather.name}
           country={weather.sys.country}
           temp={Math.round(weather.main.temp)}
@@ -87,10 +93,18 @@ function App() {
           sunrise={date(weather.sys.sunrise * 1000)}
           sunset={date(weather.sys.sunset * 1000)}
           date={date(weather.dt * 1000)}
-          icon={get_WeatherIcon(weatherIcon, weather.weather[0].id)} /> : ('')
-      }
+          icon={get_WeatherIcon(weatherIcon, weather.weather[0].id)}
+        />
+      )}
+      {hasError && (
+        <div className="mt-5">
+          <p className="error-message">
+            Unfortunately we could not find the city you specified or there was
+            an error fetching the weather information
+          </p>
+        </div>
+      )}
     </div>
-
   );
 }
 export default App;
