@@ -39,8 +39,9 @@
 }
 
 input {
-  background-color: #215664 !important;
-  color: white;
+  background-color: grey !important;
+  color: white !important;
+
   border: 0 !important;
   margin: 0px auto !important;
   width: 300px !important;
@@ -48,21 +49,11 @@ input {
   border-radius: 0;
 }
 
-::placeholder {
-  color: #fff !important;
-  opacity: 1; /* Firefox */
-}
-
-input:-ms-input-placeholder {
-  color: #f5f5f5;
-}
-
 input:focus {
   box-shadow: none !important;
 }
 
-input,
-.container::-webkit-input-placeholder {
+input::placeholder , input::-webkit-input-placeholder {
   color: white !important;
 }
 
