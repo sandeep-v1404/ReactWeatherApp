@@ -51,6 +51,8 @@ function App() {
   const [weather, setWeather] = useState({
     name: "City",
   });
+  const [hasFetched, setHasFetched] = useState(false)
+
   const search = () => {
     try {
       setLoading(true);
@@ -66,6 +68,8 @@ function App() {
       setLoading(false);
     }
   };
+
+
   return (
     <div className="App">
       <div className="jumbotron">
