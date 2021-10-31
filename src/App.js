@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Weather from "./components/weather.component";
+import Header from "./components/Header";
 import "weather-icons/css/weather-icons.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -72,13 +73,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="jumbotron">
-        <h3 className="display-4">Weather App</h3>
-        <p className="lead">
-          A simple Web app which shows you weather by City Name.This uses
-          OpenWeatherAPI made by ReactJS
-        </p>
-      </div>
+      <Header />
       <form
         onSubmit={(e) => {
           e.preventDefault();
