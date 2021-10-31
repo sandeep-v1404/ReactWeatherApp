@@ -62,11 +62,11 @@ function App() {
         .then((result) => {
           setWeather(result);
           setQuery("");
+          setLoading(false);
+
         });
     } catch (error) {
-      alert(error);
-    } finally {
-      setLoading(false);
+      console.error(error);
     }
   };
 
@@ -75,6 +75,7 @@ function App() {
     <div className="App">
       <Header />
       <form
+        style={{ marginTop: "30px" }}
         onSubmit={(e) => {
           e.preventDefault();
           search();

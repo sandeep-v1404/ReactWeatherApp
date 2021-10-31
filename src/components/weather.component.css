@@ -1,3 +1,6 @@
+.weather-container {
+  margin-top: 20px;
+}
 .weather-container .cards {
   height: 100vh;
 }
