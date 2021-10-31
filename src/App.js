@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import "weather-icons/css/weather-icons.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import Footer from "./components/Footer";
 
 const api = {
   url: "https://api.openweathermap.org/data/2.5/weather?units=metric&appid=c65082e510e9cbf36a5cae8041688105&q=",
@@ -52,7 +53,6 @@ function App() {
   const [weather, setWeather] = useState({
     name: "City",
   });
-  const [hasFetched, setHasFetched] = useState(false)
 
   const search = () => {
     try {
@@ -108,9 +108,8 @@ function App() {
           date={date(weather.dt * 1000)}
           icon={get_WeatherIcon(weatherIcon, weather.weather[0].id)}
         />
-      ) : (
-        ""
-      )}
+      ) : <Weather />}
+      <Footer />
     </div>
   );
 }
