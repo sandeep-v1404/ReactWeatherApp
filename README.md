@@ -1,3 +1,5 @@
+![[object Object]](https://socialify.git.ci/sandeep-v1404/ReactWeatherApp/image?description=1&descriptionEditable=A%20web%20app%20for%20finding%20weather%20by%20city%20name.%0A%0A&font=Inter&forks=1&issues=1&language=1&logo=https%3A%2F%2Fsandeep-v1404.github.io%2FReactWeatherApp%2Ffavicon.ico&name=1&owner=1&pattern=Brick%20Wall&pulls=1&stargazers=1&theme=Light)
+
 # React Weather App
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
